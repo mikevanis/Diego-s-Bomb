@@ -14,6 +14,7 @@ void setup() {
     lc.clearDisplay(m);
   } 
   Serial.begin(9600);
+  pinMode(4, OUTPUT);
 }
 
 void loop() {
@@ -21,14 +22,18 @@ void loop() {
   
   for(int i=0; i<10; i++) {
     if(i>7) {
-      printNumber(1, i-8, test[i]);
+      printNumber(1, i-8, countdown[i]);
     }
     else {
-      printNumber(0, i, test[i]);
+      printNumber(0, i, countdown[i]);
     }
   }
-  //printNumber(0, 0, countdown[9]);
-  delay(1000);
+  
+  // Flick relay and wait
+  digitalWrite(4, HIGH);
+  delay(100);
+  digitalWrite(4, LOW);
+  delay(900);
 
 }
 
@@ -56,14 +61,6 @@ void printNumber(int m, int d, int n) {
       lc.setLed(m,d,i,false);
     }
   }
-
-  // debug
-  /*
-  for (int i = 0; i < 7; i++) {
-    Serial.print(data[i]);
-  }
-  Serial.println();
-  */
 }
 
 void getNumberData(int n, int *data) {
