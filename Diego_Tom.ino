@@ -22,10 +22,10 @@ void loop() {
   
   for(int i=0; i<10; i++) {
     if(i>7) {
-      printNumber(1, i-8, countdown[i]);
+      printNumber(1, i-8, test[i]);
     }
     else {
-      printNumber(0, i, countdown[i]);
+      printNumber(0, i, test[i]);
     }
   }
   
